@@ -28,6 +28,7 @@ export default function BioclimaticSection() {
 
     // Materials Column
     const timelineLineRef = useRef<HTMLDivElement>(null);
+    const grayLineRef = useRef<HTMLDivElement>(null); // New ref for the gray background line
     const matRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
 
     useLayoutEffect(() => {
@@ -82,6 +83,9 @@ export default function BioclimaticSection() {
 
             // Pause to read
             tl.to({}, { duration: 1 });
+
+            // Reveal Gray Line (Background) BEFORE the inner line grows
+            tl.fromTo(grayLineRef.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 });
 
             // --- PHASE 3: MATERIALS COLUMN ---
             tl.fromTo(
@@ -205,7 +209,7 @@ export default function BioclimaticSection() {
                 {/* --- MATERIALS COLUMN (Right) --- */}
                 <div ref={materialsRef} className="col-span-1 lg:col-span-3 pb-10 lg:pb-0 h-fit flex flex-col  relative z-10">
 
-                    <div className="absolute left-1 top-[0%] bottom-[0%] lg:top-[0%] lg:bottom-[0%] w-[4px] bg-gray-300/50">
+                    <div ref={grayLineRef} className="absolute left-1 top-[0%] bottom-[0%] lg:top-[0%] lg:bottom-[0%] w-[4px] bg-gray-300/50 opacity-0 invisible">
                         <div ref={timelineLineRef} className="w-full h-full bg-[#5CA4A9] origin-top scale-y-0" />
                     </div>
 
