@@ -11,13 +11,13 @@ interface ProductCardProps {
 
 export default function ProductCard({ imageUrl, title, price, modules, features }: ProductCardProps) {
   return (
-    <Card className="w-full max-w-sm rounded-lg overflow-hidden shadow-lg relative h-[500px]">
-      <Image 
-        src={imageUrl} 
-        alt={title} 
+    <Card className="w-full max-w-sm min-h-[75vh] rounded-lg overflow-hidden shadow-lg relative">
+      <Image
+        src={imageUrl}
+        alt={title}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className="object-cover absolute z-0" 
+        className="object-cover absolute z-0"
       />
       <div className="absolute inset-0 bg-opacity-50 z-10"></div>
       <div className="relative z-20 flex flex-col h-full p-6 shadow-lg text-white">

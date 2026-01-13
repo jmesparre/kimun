@@ -26,10 +26,10 @@ const products = [
 
 export default function ProductsSection() {
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-42">
       <div className="container mx-auto  px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Nuestros Productos</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#d0e4e6] uppercase leading-tight text-center">Nuestros Productos</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-4 xl:gap-0 justify-items-center pt-30">
           {products.map((product, index) => (
             <ProductCard key={index} {...product} />
           ))}
