@@ -44,7 +44,7 @@ export default function BioclimaticSection() {
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top top",
-                    end: "+=400%", // Increased scroll length for more comfortable reading
+                    end: "+=200%", // Increased scroll length for more comfortable reading
                     pin: true,
                     scrub: 1,
                 },

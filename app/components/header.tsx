@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -25,9 +26,15 @@ export default function Header() {
       <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold sm:inline-block">
-              Kimün
-            </span>
+            <div className="relative h-8 w-24">
+              <Image
+                src="/logo.svg"
+                alt="Kimün"
+                fill
+                className="object-contain object-left"
+                priority
+              />
+            </div>
           </Link>
         </div>
 

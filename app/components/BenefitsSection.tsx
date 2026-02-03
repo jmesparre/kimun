@@ -29,7 +29,7 @@ export default function BenefitsSection() {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: "top 80%", // Start early enough to see it come in
+                    start: "top 160%", // Start early enough to see it come in
                     end: "bottom top",
                     toggleActions: "play none none reverse",
                 },
@@ -86,7 +86,7 @@ export default function BenefitsSection() {
     return (
         <section ref={containerRef} className="w-full">
             {/* Top Part: Benefits with Blue Wipe Background */}
-            <div className="relative py-20 lg:py-32 overflow-hidden">
+            <div className="relative py-20 lg:py-32 mt-50 mb-30 overflow-hidden">
                 {/* Background Wipe Layer */}
                 <div ref={bgRef} className="absolute inset-0 bg-[#d0e4e6] z-0" />
 
@@ -94,7 +94,7 @@ export default function BenefitsSection() {
                     <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-12 lg:gap-8">
 
                         {/* Title Section */}
-                        <div className="w-full lg:w-1/4 flex justify-center lg:justify-start">
+                        <div className="w-full lg:w-1/4 flex justify-center lg:justify-start pl-0 md:pl-12">
                             <h2 ref={titleRef} className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#8baeb3] uppercase leading-tight text-center lg:text-left invisible">
                                 Bene<br className="hidden lg:block" />ficios
                             </h2>

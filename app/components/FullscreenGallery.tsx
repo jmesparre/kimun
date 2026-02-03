@@ -1,69 +1,145 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+const images = [
+    "/galeria/frente.webp",
+    "/galeria/exterior2.webp",
+    "/galeria/exterior3.jpeg",
+    "/galeria/galeria.webp",
+    "/galeria/living-comedor.webp",
+    "/galeria/living.jpeg",
+    "/galeria/comedor.webp",
+    "/galeria/comedor2.jpeg",
+    "/galeria/cocina.webp",
+    "/galeria/habitacion.jpeg",
+    "/galeria/habitacion2.jpeg",
+];
 
 export default function FullscreenGallery() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const wrapperRef = useRef<HTMLDivElement>(null);
-    const image1Ref = useRef<HTMLDivElement>(null);
-    const image2Ref = useRef<HTMLDivElement>(null);
+    const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top top",
-                    end: "+=150%", // Adjust scroll distance for animation speed
-                    scrub: true,
-                    pin: true,
-                    anticipatePin: 1,
-                },
-            });
+    const closeModal = useCallback(() => setSelectedIndex(null), []);
 
-            // Initial state: Image 2 is off-screen to the right
-            gsap.set(image2Ref.current, { xPercent: 100 });
-
-            // Animate: Image 2 slides in from right (to 0), Image 1 slides out to left (to -100)
-            tl.to(image2Ref.current, { xPercent: 0, ease: "none" })
-                .to(image1Ref.current, { xPercent: -100, ease: "none" }, "<"); // "<" syncs start time
-
-        }, containerRef);
-
-        return () => ctx.revert();
+    const showNext = useCallback(() => {
+        setSelectedIndex((prev) => (prev === null ? null : (prev + 1) % images.length));
     }, []);
 
+    const showPrev = useCallback(() => {
+        setSelectedIndex((prev) => (prev === null ? null : (prev - 1 + images.length) % images.length));
+    }, []);
+
+    // Handle Keyboard Navigation & Escape
+    useEffect(() => {
+        if (selectedIndex === null) return;
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") closeModal();
+            if (e.key === "ArrowRight") showNext();
+            if (e.key === "ArrowLeft") showPrev();
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [selectedIndex, closeModal, showNext, showPrev]);
+
+    // Handle Scroll Lock
+    useEffect(() => {
+        if (selectedIndex !== null) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [selectedIndex]);
+
+    // Handle Wheel Scroll Navigation
+    const handleWheel = (e: React.WheelEvent) => {
+        // Debounce handling could be good but for simple scroll nav:
+        // Prevent default not needed as we are in fixed overlay, actually wait, 
+        // fixed overlay stops scroll propagation to body usually if it captures events.
+        // But we want to trigger change.
+        if (e.deltaY > 0) {
+            showNext();
+        } else if (e.deltaY < 0) {
+            showPrev();
+        }
+    };
+
     return (
-        <section ref={containerRef} className="relative w-full h-screen overflow-hidden">
-            <div ref={wrapperRef} className="relative w-full h-full">
-
-                {/* Image 1 */}
-                <div ref={image1Ref} className="absolute inset-0 w-full h-full z-10">
-                    <Image
-                        src="/foto1.webp"
-                        alt="Gallery Image 1"
-                        fill
-                        className="object-cover p-5 bg-white"
-                        priority
-                    />
+        <section className="w-full py-16 bg-background">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {images.map((src, index) => (
+                        <div
+                            key={index}
+                            className="relative aspect-square cursor-pointer overflow-hidden rounded-lg group"
+                            onClick={() => setSelectedIndex(index)}
+                        >
+                            <Image
+                                src={src}
+                                alt={`Gallery Image ${index + 1}`}
+                                fill
+                                className="object-cover transition-transform duration-300 group-hover:scale-110"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                        </div>
+                    ))}
                 </div>
-
-                {/* Image 2 */}
-                <div ref={image2Ref} className="absolute inset-0 w-full h-full z-20">
-                    <Image
-                        src="/foto2.webp" // Assuming second image is foto2.webp as per common assets, verify if needed or use placeholder logic from confirm
-                        alt="Gallery Image 2"
-                        fill
-                        className="object-cover p-5 bg-white"
-                    />
-                </div>
-
             </div>
+
+            {/* Lightbox */}
+            {selectedIndex !== null && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
+                    onClick={closeModal}
+                    onWheel={handleWheel}
+                >
+                    {/* Close Button */}
+                    <button
+                        className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors p-2 z-60"
+                        onClick={(e) => { e.stopPropagation(); closeModal(); }}
+                    >
+                        <X size={32} />
+                    </button>
+
+                    {/* Prev Button */}
+                    <button
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors p-2 z-60 hidden md:block"
+                        onClick={(e) => { e.stopPropagation(); showPrev(); }}
+                    >
+                        <ChevronLeft size={48} />
+                    </button>
+
+                    {/* Next Button */}
+                    <button
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors p-2 z-60 hidden md:block"
+                        onClick={(e) => { e.stopPropagation(); showNext(); }}
+                    >
+                        <ChevronRight size={48} />
+                    </button>
+
+                    {/* Image Container */}
+                    <div
+                        className="relative w-full max-w-5xl h-[80vh] flex items-center justify-center touch-manipulation"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <Image
+                            src={images[selectedIndex]}
+                            alt="Fullscreen Gallery Image"
+                            fill
+                            className="object-contain select-none"
+                            quality={100}
+                            priority
+                        />
+                    </div>
+                </div>
+            )}
         </section>
     );
 }
