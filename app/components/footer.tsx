@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 dark:bg-gray-800">
-      <div className="container mx-auto py-8 px-4 md:px-6">
+    <footer className="bg-[#d0e4e6]">
+      <div className="container mx-auto py-16 px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-lg font-bold mb-2">Kimün</h3>
@@ -28,9 +28,6 @@ export default function Footer() {
               </a>
             </div>
           </div>
-        </div>
-        <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-4 text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Kimün. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

@@ -122,7 +122,7 @@ export default function BenefitsSection() {
                 <div className="container mx-auto px-4 flex flex-col gap-20 lg:gap-32">
 
                     {/* Estilo Section */}
-                    <div ref={styleRef} className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-16 invisible">
+                    <div ref={styleRef} className="flex pl-10 flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-16 invisible">
                         <div className="w-full lg:w-1/3 flex justify-center lg:justify-start">
                             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#d1d1c9] uppercase leading-tight">
                                 Estilo
@@ -137,7 +137,7 @@ export default function BenefitsSection() {
 
                     {/* Materiales y Colores Section */}
                     <div ref={materialsRef} className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 invisible">
-                        <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
+                        <div className="w-full lg:w-1/2 pl-10 flex justify-center lg:justify-start">
                             <Image
                                 src="/colores.webp"
                                 alt="Materiales y Colores"

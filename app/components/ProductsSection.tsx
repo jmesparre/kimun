@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 const products = [
   {
     imageUrl: '/hero.jpg',
-    title: 'Vivienda Unifamiliar',
+    title: 'Tiny House',
     price: '$45.000.000',
     modules: '2 Módulos Habitables',
     features: ['Diseño Moderno', 'Eficiencia Energética', 'Entrega Rápida'],
