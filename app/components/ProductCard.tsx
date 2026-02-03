@@ -1,17 +1,16 @@
 import Image from 'next/image';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 
 interface ProductCardProps {
   imageUrl: string;
   title: string;
-  price: string;
-  modules: string;
-  features: string[];
+  size: string;
+  description: string;
 }
 
-export default function ProductCard({ imageUrl, title, price, modules, features }: ProductCardProps) {
+export default function ProductCard({ imageUrl, title, size, description }: ProductCardProps) {
   return (
-    <Card className="w-full max-w-sm min-h-[75vh] rounded-lg overflow-hidden shadow-lg relative">
+    <Card className="w-full max-w-sm min-h-[75vh] rounded-lg overflow-hidden shadow-lg relative border-0">
       <Image
         src={imageUrl}
         alt={title}
@@ -19,21 +18,20 @@ export default function ProductCard({ imageUrl, title, price, modules, features 
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover absolute z-0"
       />
-      <div className="absolute inset-0 bg-opacity-50 z-10"></div>
-      <div className="relative z-20 flex flex-col h-full p-6 shadow-lg text-white">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">{title}</CardTitle>
-        </CardHeader>
-        <CardContent className="flex-grow">
-          <p className="text-4xl font-extrabold mb-2">{price}</p>
-          <p className="text-xl font-semibold">{modules}</p>
+      <div className="absolute inset-0 bg-black/40 z-10"></div>
+      <div className="relative z-20 flex flex-col h-full p-8 text-white items-center justify-between text-center">
+        <div className="w-full text-center p-0">
+          <h3 className="text-3xl font-bold tracking-wide uppercase">{title}</h3>
+        </div>
+
+        <CardContent className="flex-grow flex items-center justify-center p-0">
+          <p className="text-6xl font-black opacity-90">
+            {size} <span className="text-4xl text-gray-200">M2</span>
+          </p>
         </CardContent>
-        <CardFooter>
-          <ul className="text-sm space-y-1">
-            {features.map((feature, index) => (
-              <li key={index}>{feature}</li>
-            ))}
-          </ul>
+
+        <CardFooter className="p-0">
+          <p className="text-2xl font-semibold tracking-wider opacity-90">{description}</p>
         </CardFooter>
       </div>
     </Card>

@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -74,18 +73,15 @@ export default function HeroSection() {
       />
       <div className="absolute inset-0 bg-black/50 -z-10" />
       <div ref={container} className="relative z-10 text-white pt-30 max-w-2xl lg:max-w-4xl">
-        <h1 className="hero-text text-4xl text-shadow-lg md:text-5xl  font-bold tracking-tight">
+        <h1 className="hero-text text-5xl text-shadow-lg md:text-6xl  font-bold tracking-tight">
           Construimos Tu Futuro,
         </h1>
-        <h2 className="hero-text text-4xl text-shadow-lg md:text-5xl  font-bold tracking-tight">
+        <h2 className="hero-text text-4xl text-shadow-lg md:text-6xl  font-bold tracking-tight">
           Cuidamos el Planeta
         </h2>
         <p className="hero-text mt-4 text-lg text-shadow-lg md:text-xl max-w-md m-auto">
           Viviendas ecológicas de diseño que combinan tecnología, sustentabilidad y confort.
         </p>
-        <Button className="hero-button mt-8" size="lg">
-          Solicitá tu cotización
-        </Button>
       </div>
     </section>
   );

@@ -4,23 +4,20 @@ const products = [
   {
     imageUrl: '/hero.jpg',
     title: 'Tiny House',
-    price: '$45.000.000',
-    modules: '2 Módulos Habitables',
-    features: ['Diseño Moderno', 'Eficiencia Energética', 'Entrega Rápida'],
+    size: '32',
+    description: '2 ambientes',
   },
   {
     imageUrl: '/hero.jpg',
-    title: 'Complejo Turístico',
-    price: '$88.000.000',
-    modules: '4 Módulos + Piscina',
-    features: ['Alta Rentabilidad', 'Diseño Personalizado', 'Entorno Natural'],
+    title: 'Vivienda',
+    size: '80',
+    description: '3 ambientes',
   },
   {
     imageUrl: '/hero.jpg',
-    title: 'Oficinas Modulares',
-    price: '$30.000.000',
-    modules: '2 Módulos de Oficina',
-    features: ['Espacio Flexible', 'Instalación Rápida', 'Diseño Corporativo'],
+    title: 'Maxi vivienda',
+    size: '160',
+    description: '4 ambientes',
   },
 ];
 

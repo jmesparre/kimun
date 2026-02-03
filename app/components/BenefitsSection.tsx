@@ -29,7 +29,7 @@ export default function BenefitsSection() {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: "top 160%", // Start early enough to see it come in
+                    start: "top 120%", // Start early enough to see it come in
                     end: "bottom top",
                     toggleActions: "play none none reverse",
                 },
@@ -129,7 +129,7 @@ export default function BenefitsSection() {
                             </h2>
                         </div>
                         <div className="w-full lg:w-2/3 flex items-center">
-                            <p className="text-gray-800 text-lg md:text-xl leading-relaxed text-center lg:text-left max-w-2xl">
+                            <p className="text-gray-800 text-md md:text-xl leading-relaxed text-center lg:text-left max-w-2xl">
                                 Viviendas Kimün, tiene un estilo arquitectónico que fusiona lo colonial con elementos modernos y minimalistas. Integra arcos y arcadas que se complementan con líneas limpias y materiales contemporáneos que aseguran un ambiente moderno y funcional.
                             </p>
                         </div>
@@ -150,7 +150,7 @@ export default function BenefitsSection() {
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#d1d1c9] uppercase leading-tight text-center lg:text-left">
                                 Materiales y<br />Colores
                             </h2>
-                            <p className="text-gray-800 text-lg md:text-xl leading-relaxed text-center lg:text-left max-w-xl">
+                            <p className="text-gray-800 text-md md:text-xl leading-relaxed text-center lg:text-left max-w-xl">
                                 Tonos claros y cálidos que amplian los ambientes. Materiales nobles: madera, porcelanato y piedra.
                             </p>
                         </div>
