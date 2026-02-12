@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Recycle, Thermometer, VolumeX, FireExtinguisher, Hourglass } from "lucide-react";
+import { Recycle, Thermometer, VolumeX, FireExtinguisher, Hourglass, Wrench } from "lucide-react";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -14,6 +14,7 @@ const benefits = [
     { title: "Acústica", icon: VolumeX },
     { title: "Ignífuga", icon: FireExtinguisher },
     { title: "Velocidad", icon: Hourglass },
+    { title: "Mínimo Mantenimiento", icon: Wrench },
 ];
 
 export default function BenefitsSection() {
@@ -90,21 +91,21 @@ export default function BenefitsSection() {
                 {/* Background Wipe Layer */}
                 <div ref={bgRef} className="absolute inset-0 bg-[#d0e4e6] z-0" />
 
-                <div className="container mx-auto px-4 relative z-10">
-                    <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-12 lg:gap-8">
+                <div className="mx-auto px-14 relative z-10">
+                    <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-12 lg:gap-0">
 
                         {/* Title Section */}
-                        <div className="w-full lg:w-1/4 flex justify-center lg:justify-start pl-0 md:pl-12">
+                        <div className="w-full lg:w-1/4 flex justify-center lg:justify-start pl-0 md:pl-6">
                             <h2 ref={titleRef} className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#8baeb3] uppercase leading-tight text-center lg:text-left invisible">
                                 Bene<br className="hidden lg:block" />ficios
                             </h2>
                         </div>
 
                         {/* Cards Grid */}
-                        <div ref={cardsRef} className="w-full lg:w-3/4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                        <div ref={cardsRef} className="w-full -mt-7 lg:w-3/4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 pr-6">
                             {benefits.map((item, index) => (
                                 <div key={index} className="flex flex-col items-center justify-center gap-4 group invisible">
-                                    <h3 className="text-[#8baeb3] font-bold text-xl md:text-2xl text-center">
+                                    <h3 className="text-[#8baeb3] font-bold text-xl md:text-2xl text-center min-h-[3.5rem] md:min-h-[4rem] flex items-end justify-center">
                                         {item.title}
                                     </h3>
                                     <div className="benefit-icon p-4 rounded-full bg-white/20 backdrop-blur-sm shadow-sm opacity-90 transition-transform group-hover:scale-110 duration-300">
@@ -143,7 +144,7 @@ export default function BenefitsSection() {
                                 alt="Materiales y Colores"
                                 width={500}
                                 height={300}
-                                className="object-contain"
+                                className="object-contain bg-red-500 rounded-lg"
                             />
                         </div>
                         <div className="w-full lg:w-1/2 flex flex-col gap-6 lg:items-start items-center">
