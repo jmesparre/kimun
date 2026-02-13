@@ -12,9 +12,9 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-2">Contacto</h3>
             <ul className="space-y-2 text-gray-500 dark:text-gray-400">
-              <li>Dirección: </li>
-              <li>Teléfono: </li>
-              <li>Email: </li>
+              <li>Dirección: Local 7, Paseo Serrano, Estancia Grande</li>
+              <li>Teléfono: 2664197704</li>
+              <li>Email: viviendaskimun@gmail.com</li>
             </ul>
           </div>
           <div>

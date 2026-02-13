@@ -44,7 +44,7 @@ export default function BioclimaticSection() {
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top top",
-                    end: "+=200%", // Increased scroll length for more comfortable reading
+                    end: "+=240%", // Increased scroll length for more comfortable reading
                     pin: true,
                     scrub: 1,
                 },
@@ -215,21 +215,26 @@ export default function BioclimaticSection() {
 
                     <div className="space-y-8 relative z-10 py-2 ml-8 lg:ml-8">
                         {[
-                            { title: "Foilroof", text: "Aislante reflectivo superior", img: "/roilroof.webp" },
-                            { title: "Ladrillos HCCA", text: "Alta capacidad térmica", img: "/hcca.webp" },
-                            { title: "Doble Vidrio", text: "Hermeticidad y confort", img: "/double.glass.webp" }
+                            { title: "Foilroof", text: "Aislante reflectivo superior", img: "/roilroof.webp", link: "https://www.grupoltn.com/productos" },
+                            { title: "Ladrillos HCCA", text: "Alta capacidad térmica", img: "/hcca.webp", link: "https://brimaxargentina.com.ar/" },
+                            { title: "Doble Vidrio", text: "Hermeticidad y confort", img: "/double.glass.webp", link: "https://www.instagram.com/aberturas_paone/" }
                         ].map((item, i) => (
-                            <div key={i} ref={matRefs[i]} className="invisible">
+                            <div key={i} ref={matRefs[i]} className="invisible relative group">
                                 {/* Connector Dot */}
                                 <div className="absolute -left-[32px]  mt-10 xl:mt-16 w-3 h-3 rounded-full bg-[#5CA4A9] border-2 border-[#5CA4A9]" />
 
-                                <div className="p-0">
+                                <a href={item.link} target="_blank" rel="noopener noreferrer" className="block p-0 cursor-pointer">
                                     <div className="relative w-20 h-10 xl:mt-0 h-16 xl:h-24 mb-2 rounded-lg overflow-hidden">
-                                        <Image src={item.img} alt={item.title} fill className="object-contain" />
+                                        <Image
+                                            src={item.img}
+                                            alt={item.title}
+                                            fill
+                                            className="object-contain transition-transform duration-300 group-hover:scale-115"
+                                        />
                                     </div>
-                                    <h4 className="font-bold text-gray-800 text-sm xl:text-base">{item.title}</h4>
+                                    <h4 className="font-bold text-gray-800 text-sm xl:text-base transition-colors group-hover:text-[#5CA4A9]">{item.title}</h4>
                                     <p className="text-[10px] xl:text-xs text-gray-500">{item.text}</p>
-                                </div>
+                                </a>
                             </div>
                         ))}
                     </div>
